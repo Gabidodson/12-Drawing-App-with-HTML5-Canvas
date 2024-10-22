@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <h1>Interactive Drawing Tool</h1>
+        <div>
+            <label>
+                <input type="radio" name="tool" value="line" checked> Line
+            </label>
+            <label>
+                <input type="radio" name="tool" value="rectangle">Rectangle
+            </label>
+            <label>
+                <input type="radio" name="tool" value="circle">Circle
+            </label>
+        </div>
+        <div>
+            <label for="color">Color:</label>
+            <input type="color"id="color"value="#000000">
+            </div>
+            <div>
+                <button id="clear">Clear Canvas</button>
+            </div>
+            <canvas id="drawingCanvas"width="1000"height="800"></canvas>
+            <script src="main12.js"></script>
+    </body>
+</html>
