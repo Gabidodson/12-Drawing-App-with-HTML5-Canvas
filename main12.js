@@ -58,7 +58,7 @@ function drawRectangle(x,y) {
     ctx.stroke();
 }
 function drawCircle(x,y) {
-    ctx.beginPath()
+    ctx.beginPath
     const radius = Math.sqrt(Math.pow(x-startX,2)+Math.pow(y-startY,2));
     ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
     ctx.stroke();
