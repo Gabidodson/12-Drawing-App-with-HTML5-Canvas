@@ -21,18 +21,19 @@ function startDrawing(e){
 }
 function draw(e) {
     if (!isDrawing) return;
-    const Tool = getSelectedTool(); 
+    const tool = getSelectedTool(); 
     const color = document.getElementById('colorPicker').value;
 
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     
-    switch (Tool){
+    switch (tool){
         case 'line':
             drawLine(e.offsetX, e.offsetY);
             break;
         case 'rectangle':
                 drawRectangle(e.offsetX, e.offsetY);
+                break;
         case 'circle':
             drawCircle(e.offsetX, e.offsetY);
             break;
@@ -53,7 +54,7 @@ function drawRectangle(x,y) {
     ctx.beginPath();
     const width = x - startX;
     const height = y - startY;
-    ctx.rectangle(startX, startY, width, height);
+    ctx.rect(startX, startY, width, height);
     ctx.stroke();
 }
 function drawCircle(x,y) {
@@ -62,24 +63,18 @@ function drawCircle(x,y) {
     ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
     ctx.stroke();
 }
-function draw(e) {
-    if (!isDrawing) return;
-    const tool = getSelectedTool();
-    const color = document.getElementById('colorPicker').value;
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
+//Add Color Selection and Canvas Clearing
+const clearButton = document.getElementById('clearCanvas');
+clearButton.addEventListener('click', clearCanvas);
 
+function clearCanvas(){
     ctx.clearRect(0,0, canvas.width, canvas.height);
-    switch (tool) {
-        case 'line':
-            drawLine(e.offsetX,e.offsetY);
-            break;
-            case 'rectangle':
-                drawRectangle(e.offsetX, e.offsetY);
-                break;
-                case 'circle':
-                    drawCircle(e.offsetX, e.offsetY);
-                    break;
-    }
-
 }
+document.addEventListener('DOMContentLoaded', function(){
+    const clearButton = document.getElementById('clearCanvas');
+    if (clearButton) {
+        clearButton.addEventListener('click', clearCanvas);
+    } else{
+        console.error('Clear button not found');
+    }
+});
