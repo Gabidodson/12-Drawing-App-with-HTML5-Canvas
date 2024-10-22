@@ -41,3 +41,45 @@ function draw(e) {
 function stopDrawing(){
     isDrawing = false;
 }
+
+//Implement Shape Drawing Logic
+function drawLine(x,y) {
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(x,y);
+    ctx.stroke();
+}
+function drawRectangle(x,y) {
+    ctx.beginPath();
+    const width = x - startX;
+    const height = y - startY;
+    ctx.rectangle(startX, startY, width, height);
+    ctx.stroke();
+}
+function drawCircle(x,y) {
+    ctx.beginPath()
+    const radius = Math.sqrt(Math.pow(x-startX,2)+Math.pow(y-startY,2));
+    ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+function draw(e) {
+    if (!isDrawing) return;
+    const tool = getSelectedTool();
+    const color = document.getElementById('colorPicker').value;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    switch (tool) {
+        case 'line':
+            drawLine(e.offsetX,e.offsetY);
+            break;
+            case 'rectangle':
+                drawRectangle(e.offsetX, e.offsetY);
+                break;
+                case 'circle':
+                    drawCircle(e.offsetX, e.offsetY);
+                    break;
+    }
+
+}
